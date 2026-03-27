@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+/**
+ * Program Perhitungan Gaji Karyawan dengan Lembur
+ * Menggunakan operasi matematika dan statement if-else
+ * 
+ */
+public class PerhitunganGajiKaryawan {
+    
+    public static void main(String[] args) {
+        // Membuat objek Scanner untuk input dari keyboard
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input Golongan Karyawan
+        System.out.print("Masukkan golongan karyawan (A/B/C): ");
+        String golongan = scanner.nextLine().toUpperCase();
+        
+        // Input Jumlah Jam Lembur
+        System.out.print("Masukkan jumlah jam lembur: ");
+        int jamLembur = scanner.nextInt();
+        
+        // Menutup scanner setelah input selesai
+        scanner.close();
+        
+        // Variabel untuk menyimpan gaji pokok
+        double gajiPokok = 0;
+        
+        // Menentukan gaji pokok berdasarkan golongan menggunakan switch-case
+        switch (golongan) {
+            case "A":
+                gajiPokok = 5000000;
+                System.out.println("Gaji Pokok Golongan A: Rp " + gajiPokok);
+                break;
+            case "B":
+                gajiPokok = 6500000;
+                System.out.println("Gaji Pokok Golongan B: Rp " + gajiPokok);
+                break;
+            case "C":
+                gajiPokok = 9500000;
+                System.out.println("Gaji Pokok Golongan C: Rp " + gajiPokok);
+                break;
+            default:
+                System.out.println("Golongan tidak valid! Gunakan A, B, atau C.");
+                return; // Keluar dari program jika golongan tidak valid
+        }
+        
+        // Menghitung gaji lembur berdasarkan jumlah jam lembur
+        double gajiLembur = 0;
+        double persentaseLembur = 0;
+        
+        // Menggunakan if-else untuk menentukan persentase lembur
+        if (jamLembur == 1) {
+            persentaseLembur = 0.30; // 30%
+            gajiLembur = gajiPokok * persentaseLembur;
+            System.out.println("Lembur 1 jam: " + (persentaseLembur * 100) + "% dari gaji pokok");
+        } else if (jamLembur == 2) {
+            persentaseLembur = 0.32; // 32%
+            gajiLembur = gajiPokok * persentaseLembur;
+            System.out.println("Lembur 2 jam: " + (persentaseLembur * 100) + "% dari gaji pokok");
+        } else if (jamLembur == 3) {
+            persentaseLembur = 0.34; // 34%
+            gajiLembur = gajiPokok * persentaseLembur;
+            System.out.println("Lembur 3 jam: " + (persentaseLembur * 100) + "% dari gaji pokok");
+        } else if (jamLembur == 4) {
+            persentaseLembur = 0.36; // 36%
+            gajiLembur = gajiPokok * persentaseLembur;
+            System.out.println("Lembur 4 jam: " + (persentaseLembur * 100) + "% dari gaji pokok");
+        } else if (jamLembur >= 5) {
+            persentaseLembur = 0.38; // 38%
+            gajiLembur = gajiPokok * persentaseLembur;
+            System.out.println("Lembur >= 5 jam: " + (persentaseLembur * 100) + "% dari gaji pokok");
+        } else {
+            // Jika jam lembur 0 atau kurang dari 1
+            System.out.println("Tidak ada lembur (0 jam)");
+        }
+        
+        // Menghitung total penghasilan (Gaji Pokok + Gaji Lembur)
+        double totalPenghasilan = gajiPokok + gajiLembur;
+        
+        // Output hasil akhir sesuai format yang diminta
+        System.out.println("\n=== RINCIAN GAJI ===");
+        System.out.println("Gaji Pokok: Rp " + String.format("%,.0f", gajiPokok));
+        System.out.println("Gaji Lembur (" + jamLembur + " jam): Rp " + String.format("%,.0f", gajiLembur));
+        System.out.println("=====================");
+        System.out.println("Jumlah Penghasilan: Rp " + String.format("%,.0f", totalPenghasilan));
+        
+        // Contoh output untuk testing:
+        // Input: Golongan A, 3 jam lembur
+        // Output: Total = 5.000.000 + (5.000.000 * 0.34) = Rp 6.700.000
+    }
+}
